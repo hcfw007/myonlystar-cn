@@ -3,16 +3,24 @@ import { BLOG_PATH } from "@/content.config";
 import { slugifyStr } from "./slugify";
 import config from "@/config";
 
+const INDEX_FILE = /^index\.(md|mdx)$/;
+
 function getPostPathSegments(filePath: string | undefined): string[] {
-  return (
+  const segments =
     filePath
       ?.replace(BLOG_PATH, "")
       .split("/")
       .filter(path => path !== "")
-      .filter(path => !path.startsWith("_"))
-      .slice(0, -1)
-      .map(segment => slugifyStr(segment)) ?? []
-  );
+      .filter(path => !path.startsWith("_")) ?? [];
+  if (segments.length === 0) return [];
+
+  const filename = segments[segments.length - 1] ?? "";
+  // Astro collapses `<dir>/index.{md,mdx}` to an id equal to `<dir>`.
+  // To avoid `<dir>/<dir>` doubling, drop the parent directory too when the
+  // file is an `index` entry, so co-located post directories produce
+  // `/posts/<dir>/` rather than `/posts/<dir>/<dir>/`.
+  const sliceEnd = INDEX_FILE.test(filename) ? -2 : -1;
+  return segments.slice(0, sliceEnd).map(segment => slugifyStr(segment));
 }
 
 function getIdSlug(id: string): string {

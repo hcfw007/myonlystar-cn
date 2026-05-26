@@ -14,7 +14,11 @@ type Props = {
   canonicalURL?: string;
 };
 
-const { site } = config;
+const { site, analytics } = config;
+const cloudflareAnalyticsToken =
+  import.meta.env.PROD && analytics.cloudflare?.token
+    ? analytics.cloudflare.token
+    : null;
 
 const {
   title = site.title,
@@ -111,6 +115,16 @@ const rssHref = getRelativeLocaleUrl(
         window.__theme = { value: theme };
       })();
     </script>
+
+    {
+      cloudflareAnalyticsToken && (
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: cloudflareAnalyticsToken })}
+        />
+      )
+    }
 
     <ClientRouter />
   </head>

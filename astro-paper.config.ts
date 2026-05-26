@@ -34,6 +34,11 @@ export default defineAstroPaperConfig({
     // { name: "linkedin", url: "https://www.linkedin.com/in/username/" },
     // { name: "mail",     url: "mailto:yourmail@gmail.com" },
   ],
+  analytics: {
+    cloudflare: {
+      token: "089c323681dd4a9a81da4f9b6409653e",
+    },
+  },
   shareLinks: [
     // { name: "whatsapp", url: "https://wa.me/?text=" },
     // { name: "facebook", url: "https://www.facebook.com/sharer.php?u=" },

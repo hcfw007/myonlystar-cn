@@ -92,6 +92,16 @@ interface ShareLink {
   linkTitle?: string;
 }
 
+interface AnalyticsConfig {
+  /**
+   * Cloudflare Web Analytics. Injects the beacon script in production builds only.
+   * Get the token from Cloudflare Dashboard → Analytics & Logs → Web Analytics.
+   */
+  cloudflare?: {
+    token: string;
+  };
+}
+
 interface AstroPaperConfig {
   site: SiteConfig;
   posts?: PostsConfig;
@@ -100,6 +110,8 @@ interface AstroPaperConfig {
   socials?: SocialLink[];
   /** Share links shown on post detail pages */
   shareLinks?: ShareLink[];
+  /** Visitor analytics providers */
+  analytics?: AnalyticsConfig;
 }
 
 type ResolvedSiteConfig = Required<
@@ -123,6 +135,7 @@ export interface ResolvedAstroPaperConfig {
   features: Required<FeaturesConfig>;
   socials: SocialLink[];
   shareLinks: ShareLink[];
+  analytics: AnalyticsConfig;
 }
 
 /**

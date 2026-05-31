@@ -1,5 +1,5 @@
 ---
-title: 虽然今天输了，但这是阿森纳仍然值得期待
+title: 虽然今天输了，但这支阿森纳仍然值得期待
 description: On Champions League Final night
 pubDatetime: 2026-05-31T03:10:00+08:00
 author: Nan

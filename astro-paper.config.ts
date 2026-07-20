@@ -2,14 +2,14 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://astro-paper.pages.dev/",
+    url: "https://myonlystar-cn.pages.dev/",
     title: "Notebook",
     description: "A simple blog",
-    author: "Sat Naing",
-    profile: "https://satna.ing",
+    author: "Nan",
+    profile: "https://github.com/hcfw007",
     ogImage: "default-og.jpg",
-    lang: "en",
-    timezone: "Asia/Bangkok",
+    lang: "zh-CN",
+    timezone: "Asia/Shanghai",
     dir: "ltr",
   },
   posts: {
@@ -24,7 +24,7 @@ export default defineAstroPaperConfig({
     showBackButton: true,
     editPost: {
       enabled: true,
-      url: "https://github.com/satnaing/astro-paper/edit/main/",
+      url: "https://github.com/hcfw007/myonlystar-cn/edit/main/",
     },
     search: "pagefind",
   },

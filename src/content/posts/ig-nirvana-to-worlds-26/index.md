@@ -1,7 +1,7 @@
 ---
 title: 从涅槃组翻山出来的iG，又去看世界了
 description: On iG's climb from the Nirvana Group to Worlds
-pubDatetime: 2026-09-20T11:30:00+08:00
+pubDatetime: 2026-09-20T10:45:00+08:00
 author: Nan
 featured: true
 draft: false

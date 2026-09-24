@@ -20,6 +20,6 @@ ogImage: "./solskjaer.jpg"
 
 最后，还是感谢索尔斯克亚。毕竟你只是个救火教练，能逆转巴黎，能客场不败，能拿到第二，已经很惊喜了。但联赛第二、杯赛进入决赛，离夺冠的距离，也许是二流和一流之间巨大的鸿沟，是天才与常人的巨大差距，并非热爱、努力就能填补。曼联不是卡迪夫城，不是莫尔德，不是一招鲜就能吃遍天的地方。我理解你不主动辞职，因为主动辞职就意味着投降。这件事怪制服组，因为续约本身甚至就是个错误。离开了这里，你依然是名宿，99诺坎普永远在我心中。江湖再见吧。
 
-![索尔斯克亚和C罗，2021年9月29日曼联2-1比利亚雷亚尔](./solskjaer.jpg)
+![索尔斯克亚，2021年10月20日曼联3-2亚特兰大](./solskjaer.jpg)
 
-<small>图：Ardfern，[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)，via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Manchester_United_v_Villarreal_CF,_29_September_2021_(48).jpg)</small>
+<small>图（有裁剪）：Ardfern，[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)，via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Manchester_United_v_Atalanta_BC,_20_October_2021_(20).jpg)</small>

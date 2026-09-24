@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-This is an [AstroPaper](https://github.com/satnaing/astro-paper) v6 blog scaffold — a static, SEO-friendly blog theme built on Astro 6, TypeScript, and TailwindCSS v4. The current repo state is a fresh scaffold (see commits `4e59123`, `686046e`) intended to be customized into a personal blog.
+This is **Notebook**, Nan's (GitHub: `hcfw007`) personal Chinese-language blog, built on the [AstroPaper](https://github.com/satnaing/astro-paper) v6 theme (Astro 6, TypeScript, TailwindCSS v4). It is deployed as a static site on Cloudflare Pages at `https://myonlystar-cn.pages.dev/`.
+
+The site is localized to `zh-CN` (timezone `Asia/Shanghai`). Posts are personal essays written in Chinese — mostly football (Manchester United, Champions League, World Cup), plus esports and occasional commentary. The About page describes the blog as a public notebook: written for the author, no comment section.
 
 ## Commands
 
@@ -76,7 +78,18 @@ TailwindCSS v4 via the Vite plugin (`@tailwindcss/vite`) — no `tailwind.config
 
 ### i18n
 
-`src/i18n/` contains a lightweight string table (`lang/`) and formatters (`format.ts`). `astro.config.ts` currently declares only `en` with `prefixDefaultLocale: false`. Extending to more locales requires both adding entries under `src/i18n/lang/` and updating the `i18n.locales` array.
+`src/i18n/` contains a lightweight string table (`lang/`) and formatters (`format.ts`). The site uses `zh-CN`: `astro.config.ts` declares `locales: ["zh-CN"]` with `defaultLocale: "zh-CN"` and `prefixDefaultLocale: false`, and UI strings live in `src/i18n/lang/zh-CN.ts` (the upstream `en.ts` is still present). Adding a locale requires both a new entry under `src/i18n/lang/` and an update to the `i18n.locales` array.
+
+### Analytics
+
+Cloudflare Web Analytics is a custom addition to the theme. It is configured via `analytics.cloudflare.token` in `astro-paper.config.ts` (typed in `src/types/config.ts`). `src/layouts/Layout.astro` injects the beacon script only in production builds (`import.meta.env.PROD`).
+
+## Writing posts
+
+- Each post is a directory: `src/content/posts/<slug>/index.md`, with its images (cover, `ogImage`) stored alongside and referenced relatively (e.g. `ogImage: "./cover.jpg"`). The directory name becomes the URL (`/posts/<slug>/`).
+- Frontmatter follows the existing posts: Chinese `title`, a short `description` (recent posts use an English "On <topic>" line), `pubDatetime` with an explicit `+08:00` offset, `author: Nan`, `tags` (e.g. `football`), and optional `featured` / `draft` / `ogImage`.
+- `pubDatetime` must not be in the future (beyond the 15-minute `scheduledPostMargin`). Otherwise `postFilter` treats the post as scheduled and hides it from the built site.
+- Commit messages for new posts follow the existing pattern: `feat: 🎸 On <topic>`.
 
 ## Conventions
 

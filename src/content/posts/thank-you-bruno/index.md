@@ -3,7 +3,7 @@ title: 谢谢你，布鲁诺
 description: B~~~~~~~~~~~费
 pubDatetime: 2026-05-25T01:30:00+08:00
 author: Nan
-featured: true
+featured: false
 draft: false
 tags:
   - football

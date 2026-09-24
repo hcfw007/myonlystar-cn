@@ -3,7 +3,7 @@ title: 我的新博客
 description: 为什么我搬到了 cloudflare
 pubDatetime: 2026-05-20T09:30:00+08:00
 author: Nan
-featured: true
+featured: false
 draft: false
 tags:
   - meta

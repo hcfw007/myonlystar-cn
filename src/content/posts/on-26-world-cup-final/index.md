@@ -3,7 +3,7 @@ title: 虽然拖进了加时，但这是一场一边倒的决赛
 description: On the 2026 World Cup Final
 pubDatetime: 2026-07-20T15:30:00+08:00
 author: Nan
-featured: true
+featured: false
 draft: false
 tags:
   - football

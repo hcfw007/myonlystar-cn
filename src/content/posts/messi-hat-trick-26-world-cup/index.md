@@ -3,7 +3,7 @@ title: 39岁的梅西，又戴帽了
 description: On Messi's first World Cup hat-trick
 pubDatetime: 2026-06-17T23:30:00+08:00
 author: Nan
-featured: true
+featured: false
 draft: false
 tags:
   - football

@@ -34,4 +34,4 @@ CI order (`.github/workflows/ci.yml`): `lint` → `format:check` → `build`. `p
 - One directory per post; images sit alongside and are referenced relatively (`ogImage: "./cover.jpg"`).
 - Frontmatter: Chinese `title`, short English `description` (recent: "On <topic>"), `pubDatetime` with `+08:00`, `author: Nan`, `tags` (e.g. `football`, `esports`), optional `featured`/`draft`/`ogImage`.
 - Commit style: Conventional Commits; new posts as `feat: 🎸 On <topic>`.
-- Before writing/editing posts, read `.workbuddy/memory/MEMORY.md` (Nan's voice/style notes) and note `CLAUDE.md` for deeper architecture detail.
+- Before writing/editing posts, read `.workbuddy/memory/MEMORY.md` (Nan's voice/style notes).

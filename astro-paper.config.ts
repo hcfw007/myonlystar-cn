@@ -2,7 +2,7 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://myonlystar-cn.pages.dev/",
+    url: "https://blog.munan.wang/",
     title: "Notebook",
     description: "A simple blog",
     author: "Nan",

@@ -109,12 +109,12 @@ const ogImage = ogImageUrl
 
   <main
     id="main-content"
-    class:list={["app-layout", { "mt-8": !config.features.showBackButton }]}
+    class:list={["reading-layout", { "mt-8": !config.features.showBackButton }]}
     data-pagefind-body
   >
     <h1
       style={{ viewTransitionName: slugifyStr(title.replaceAll(".", "-")) }}
-      class="font-serif text-3xl leading-[1.35] font-semibold tracking-tight sm:text-[2.6rem]"
+      class="text-3xl leading-[1.35] font-bold tracking-tight sm:text-[2.6rem]"
     >
       {title}
     </h1>
@@ -148,7 +148,7 @@ const ogImage = ogImageUrl
       id="article"
       class:list={[
         "mt-10 w-full",
-        "app-prose max-w-app",
+        "app-prose",
         "prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)",
       ]}
     >

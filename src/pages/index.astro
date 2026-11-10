@@ -29,61 +29,64 @@ const homePath = getRelativeLocaleUrl(locale, "");
     data-home-path={homePath}
     class="app-layout"
   >
-    <section id="hero" class="pt-16 pb-14 sm:pt-24 sm:pb-20">
-      <p class="eyebrow">私人笔记 · {new Date().getFullYear()}</p>
-      <h1
-        class="mt-5 font-serif text-5xl font-semibold tracking-tight sm:text-6xl"
-      >
-        记事本
-      </h1>
-
+    <section
+      id="hero"
+      class="border-border grid gap-5 border-b py-12 sm:grid-cols-[1.1fr_1fr] sm:items-end sm:gap-12 sm:py-16"
+    >
+      <div>
+        <p class="eyebrow">私人笔记 · {new Date().getFullYear()}</p>
+        <h1 class="mt-3 text-6xl font-bold tracking-[-0.06em] sm:text-8xl">
+          {config.site.title}
+        </h1>
+      </div>
       <p
-        class="text-muted-foreground mt-7 max-w-[32rem] font-serif text-[1.02rem] leading-loose"
+        class="text-muted-foreground max-w-[34rem] text-base leading-8 sm:justify-self-end sm:pb-2 sm:text-lg"
       >
-        我是一个想法很多，但说不出来的人，希望能记录下来的一些。
-        喜欢打游戏，看足球，看科普。
+        {config.site.description}
       </p>
     </section>
 
-    {
-      featuredPosts.length > 0 && (
-        <section id="featured" class="border-border border-t pt-10">
-          <h2 class="font-serif text-xl font-semibold tracking-tight">
-            {t.home.featured}
-          </h2>
-          <ul class="mt-4">
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+    <div class="grid gap-12 py-12 lg:grid-cols-[2fr_1fr] lg:gap-16">
+      <section id="recent-posts" class="min-w-0">
+        <div
+          class="border-border flex items-baseline justify-between gap-4 border-b pb-4"
+        >
+          <h2 class="text-xl font-bold tracking-tight">{t.home.recentPosts}</h2>
+          <a
+            href={getRelativeLocaleUrl(locale, "posts")}
+            class="text-muted-foreground hover:text-accent text-xs tracking-wide whitespace-nowrap transition-colors"
+          >
+            {t.home.allPosts} →
+          </a>
+        </div>
+        <ul class="mt-1">
+          {
+            recentPosts
+              .slice(0, postsConfig.perIndex + 2)
+              .map(data => <Card variant="h3" {...data} />)
+          }
+        </ul>
+      </section>
 
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="border-border border-t pt-10">
-          <div class="flex items-baseline justify-between gap-4">
-            <h2 class="font-serif text-xl font-semibold tracking-tight">
-              {t.home.recentPosts}
+      {
+        featuredPosts.length > 0 && (
+          <section
+            id="featured"
+            class="lg:border-border min-w-0 lg:border-s lg:ps-8"
+          >
+            <h2 class="border-border border-b pb-4 text-xl font-bold tracking-tight">
+              {t.home.featured}
             </h2>
-            <a
-              href={getRelativeLocaleUrl(locale, "posts")}
-              class="text-muted-foreground hover:text-accent text-xs tracking-[0.12em] whitespace-nowrap transition-colors"
-            >
-              {t.home.allPosts} →
-            </a>
-          </div>
-          <ul class="mt-4">
-            {recentPosts.slice(0, postsConfig.perIndex + 2).map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    <div class="h-20"></div>
+            <ul class="mt-1">
+              {featuredPosts.map(data => (
+                <Card variant="h3" showDate={false} {...data} />
+              ))}
+            </ul>
+          </section>
+        )
+      }
+    </div>
+    <div class="h-8"></div>
   </main>
   <Footer />
 </Layout>

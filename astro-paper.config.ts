@@ -3,8 +3,8 @@ import { defineAstroPaperConfig } from "./src/types/config";
 export default defineAstroPaperConfig({
   site: {
     url: "https://blog.munan.wang/",
-    title: "Notebook",
-    description: "A simple blog",
+    title: "散场再聊",
+    description: "看球，打游戏，聊聊散场之后还没说完的话。",
     author: "Nan",
     profile: "https://github.com/hcfw007",
     ogImage: "default-og.jpg",

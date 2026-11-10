@@ -4,10 +4,10 @@
   /* ===== Reading typography ===== */
   .app-prose {
     @apply prose;
-    font-family: var(--font-serif);
-    font-size: 1.0625rem;
-    line-height: 2.05;
-    letter-spacing: 0.01em;
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.85;
+    letter-spacing: 0;
     color: var(--foreground);
 
     --tw-prose-body: var(--foreground);
@@ -35,10 +35,12 @@
   .app-prose h4,
   .app-prose th {
     @apply text-foreground;
+    font-weight: 700;
+    letter-spacing: -0.035em;
   }
 
   .app-prose h2 {
-    @apply mt-[2.4em] mb-[0.9em] text-[1.3em] font-semibold tracking-tight;
+    @apply mt-[2.4em] mb-[0.9em] text-[1.3em] font-bold tracking-tight;
   }
 
   /* A small brick-red rule above each section heading. */
@@ -52,7 +54,7 @@
   }
 
   .app-prose h3 {
-    @apply mt-[2em] mb-[0.7em] text-[1.12em] font-semibold;
+    @apply mt-[2em] mb-[0.7em] text-[1.12em] font-bold;
   }
 
   .app-prose strong {

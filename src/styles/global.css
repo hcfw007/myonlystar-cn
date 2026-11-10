@@ -29,7 +29,7 @@
     font-feature-settings: "kern" 1;
   }
 
-  /* Reading text is serif; everything else stays quiet and sans. */
+  /* Keep Chinese text rendering consistent across interface and reading views. */
   p,
   li,
   dd,
@@ -56,13 +56,20 @@
   }
 }
 
-/* A narrower measure than the AstroPaper default: Chinese serif reads better here. */
 @utility max-w-app {
-  @apply max-w-[42rem];
+  @apply max-w-[1220px];
+}
+
+@utility max-w-reading {
+  @apply max-w-[860px];
 }
 
 @utility app-layout {
-  @apply max-w-app mx-auto w-full px-5;
+  @apply max-w-app mx-auto w-full px-5 sm:px-8;
+}
+
+@utility reading-layout {
+  @apply max-w-reading mx-auto w-full px-5 sm:px-8;
 }
 
 @utility active-nav {

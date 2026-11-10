@@ -2,30 +2,75 @@
 import type { CollectionEntry } from "astro:content";
 import { getPostUrl } from "@/utils/getPostPaths";
 import { slugifyStr } from "@/utils/slugify";
-import Datetime from "./Datetime.astro";
+import config from "@/config";
 
 type Props = {
   variant?: "h2" | "h3";
+  showDate?: boolean;
 } & CollectionEntry<"posts">;
 
-const { variant: Heading = "h2", id, data, filePath } = Astro.props;
+const {
+  variant: Heading = "h2",
+  id,
+  data,
+  filePath,
+  showDate = true,
+} = Astro.props;
 
-const { title, description, ...props } = data;
+const { title, description, tags, pubDatetime } = data;
+
+const dateParts = new Intl.DateTimeFormat("en-CA", {
+  year: "numeric",
+  month: "2-digit",
+  timeZone: config.site.timezone,
+}).formatToParts(new Date(pubDatetime));
+
+const year = dateParts.find(part => part.type === "year")?.value ?? "";
+const month = dateParts.find(part => part.type === "month")?.value ?? "";
 ---
 
-<li class="my-6">
-  <a
-    href={getPostUrl(id, filePath, Astro.currentLocale)}
+<li class="group border-border border-t first:border-t-0">
+  <div
     class:list={[
-      "text-accent inline-block text-lg font-medium",
-      "decoration-dashed underline-offset-4 hover:underline",
-      "focus-visible:no-underline focus-visible:underline-offset-0",
+      "grid gap-2 py-7",
+      { "sm:grid-cols-[5rem_1fr] sm:gap-8": showDate },
     ]}
   >
-    <Heading transition:name={slugifyStr(title.replaceAll(".", "-"))}>
-      {title}
-    </Heading>
-  </a>
-  <Datetime {...props} />
-  <p>{description}</p>
+    {
+      showDate && (
+        <time
+          datetime={new Date(pubDatetime).toISOString()}
+          class="eyebrow pt-1.5 sm:pt-2"
+        >
+          {year} · {month}
+        </time>
+      )
+    }
+
+    <div class="min-w-0">
+      <a
+        href={getPostUrl(id, filePath, Astro.currentLocale)}
+        class="block focus-visible:no-underline"
+      >
+        <Heading
+          transition:name={slugifyStr(title.replaceAll(".", "-"))}
+          class="group-hover:text-accent font-serif text-[1.15rem] leading-relaxed font-semibold tracking-tight transition-colors duration-150"
+        >
+          {title}
+        </Heading>
+      </a>
+
+      <p class="text-muted-foreground mt-2 line-clamp-2 text-sm leading-7">
+        {description}
+      </p>
+
+      {
+        tags.length > 0 && (
+          <p class="text-muted-foreground/80 mt-3 text-[0.68rem] tracking-[0.18em] uppercase">
+            {tags.join(" · ")}
+          </p>
+        )
+      }
+    </div>
+  </div>
 </li>

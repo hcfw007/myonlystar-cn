@@ -1,11 +1,12 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import PostLayout from "@/layouts/PostLayout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Datetime from "@/components/Datetime.astro";
-import Tag from "@/components/Tag.astro";
 import { getPostSlug, getPostUrl } from "@/utils/getPostPaths";
+import { getReadingTime } from "@/utils/getReadingTime";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { slugifyStr } from "@/utils/slugify";
 import EditPost from "./_components/EditPost.astro";
@@ -71,6 +72,7 @@ const {
 } = post.data;
 
 const { Content } = await render(post);
+const readingTime = getReadingTime(post.body);
 
 let ogImageUrl: string | undefined;
 
@@ -112,21 +114,32 @@ const ogImage = ogImageUrl
   >
     <h1
       style={{ viewTransitionName: slugifyStr(title.replaceAll(".", "-")) }}
-      class="text-accent inline-block text-2xl font-bold sm:text-3xl"
+      class="font-serif text-3xl leading-[1.35] font-semibold tracking-tight sm:text-[2.6rem]"
     >
       {title}
     </h1>
 
-    <div class="my-2 flex items-center gap-2">
-      <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
+    {
+      description && (
+        <p class="text-muted-foreground mt-5 max-w-[36rem] text-base leading-relaxed">
+          {description}
+        </p>
+      )
+    }
+
+    <div
+      class="border-border text-muted-foreground mt-7 flex flex-wrap items-center gap-x-3 gap-y-1 border-b pb-6 text-xs tracking-[0.08em]"
+    >
+      <Datetime {pubDatetime} {modDatetime} {timezone} size="sm" />
+      <span aria-hidden="true">·</span>
+      <span>约 {readingTime} 分钟</span>
       <span
         aria-hidden="true"
         class:list={[
-          "text-muted-foreground max-sm:hidden",
           { hidden: !config.features.editPost?.enabled || hideEditPost },
         ]}
       >
-        |
+        ·
       </span>
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
@@ -134,7 +147,7 @@ const ogImage = ogImageUrl
     <article
       id="article"
       class:list={[
-        "mt-8 w-full",
+        "mt-10 w-full",
         "app-prose max-w-app",
         "prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)",
       ]}
@@ -142,21 +155,31 @@ const ogImage = ogImageUrl
       <Content />
     </article>
 
-    <hr class="my-8 border-dashed" />
+    <div aria-hidden="true" class="ornament">···</div>
 
-    <EditPost class="sm:hidden" {hideEditPost} {post} />
-
-    <BackToTopButton />
-
-    <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
+    <ul class="-mt-4 mb-10 flex flex-wrap items-center gap-x-5 gap-y-2">
+      {
+        tags.map(tag => (
+          <li>
+            <a
+              href={getRelativeLocaleUrl(locale, `tags/${slugifyStr(tag)}/`)}
+              transition:name={slugifyStr(tag)}
+              class="text-muted-foreground hover:text-accent text-xs tracking-[0.14em] transition-colors"
+            >
+              #{tag}
+            </a>
+          </li>
+        ))
+      }
     </ul>
 
     <ShareLinks />
 
-    <hr class="my-8 border-dashed" />
+    <div aria-hidden="true" class="ornament">···</div>
 
     <AdjacentPostNav {prevPost} {nextPost} />
+
+    <BackToTopButton />
   </main>
   <Footer />
 </PostLayout>

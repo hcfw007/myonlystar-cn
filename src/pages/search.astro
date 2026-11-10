@@ -124,24 +124,25 @@ const t = useTranslations(locale);
 
 <style is:global>
   #pagefind-search {
-    --pagefind-ui-font: var(--font-app);
+    --pagefind-ui-font: var(--font-sans);
     --pagefind-ui-text: var(--foreground);
     --pagefind-ui-background: var(--background);
     --pagefind-ui-border: var(--border);
     --pagefind-ui-primary: var(--accent);
     --pagefind-ui-tag: var(--background);
-    --pagefind-ui-border-radius: 0.375rem;
+    --pagefind-ui-border-radius: 0;
     --pagefind-ui-border-width: 1px;
-    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-image-border-radius: 0;
     --pagefind-ui-image-box-ratio: 3 / 2;
 
     form::before {
-      background-color: var(--foreground);
+      background-color: var(--muted-foreground);
     }
 
     input {
       font-weight: 400;
       border: 1px solid var(--border);
+      border-radius: 0;
     }
 
     input:focus-visible {
@@ -149,18 +150,22 @@ const t = useTranslations(locale);
     }
 
     .pagefind-ui__result-title a {
-      color: var(--accent);
+      color: var(--foreground);
+      font-family: var(--font-serif);
       outline-offset: 1px;
       outline-color: var(--accent);
-      text-decoration-style: dashed;
       text-underline-offset: 4px;
+    }
+
+    .pagefind-ui__result-title a:hover {
+      color: var(--accent);
     }
 
     .pagefind-ui__result-title a:focus-visible,
     .pagefind-ui__search-clear:focus-visible {
       text-decoration-line: none;
       outline-width: 2px;
-      outline-style: dashed;
+      outline-style: solid;
     }
 
     .pagefind-ui__result:last-of-type {

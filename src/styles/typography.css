@@ -1,90 +1,160 @@
 @plugin "@tailwindcss/typography";
 
 @layer base {
-  /* ===== Override default Tailwind Typography styles ===== */
+  /* ===== Reading typography ===== */
   .app-prose {
     @apply prose;
+    font-family: var(--font-serif);
+    font-size: 1.0625rem;
+    line-height: 2.05;
+    letter-spacing: 0.01em;
+    color: var(--foreground);
 
-    h1,
-    h2,
-    h3,
-    h4,
-    th {
-      @apply text-foreground mb-3;
-    }
+    --tw-prose-body: var(--foreground);
+    --tw-prose-headings: var(--foreground);
+    --tw-prose-links: var(--foreground);
+    --tw-prose-bold: var(--foreground);
+    --tw-prose-counters: var(--accent);
+    --tw-prose-bullets: var(--accent);
+    --tw-prose-hr: var(--border);
+    --tw-prose-quotes: var(--foreground);
+    --tw-prose-quote-borders: var(--accent);
+    --tw-prose-captions: var(--muted-foreground);
+    --tw-prose-code: var(--foreground);
+    --tw-prose-th-borders: var(--border);
+    --tw-prose-td-borders: var(--border);
+  }
 
-    h3 {
-      @apply italic;
-    }
+  .app-prose p {
+    margin-block: 1.7em;
+  }
 
-    p,
-    strong,
-    ol,
-    ul,
-    figcaption,
-    table,
-    code {
-      @apply text-foreground;
-    }
+  .app-prose h1,
+  .app-prose h2,
+  .app-prose h3,
+  .app-prose h4,
+  .app-prose th {
+    @apply text-foreground;
+  }
 
-    a {
-      @apply text-foreground hover:text-accent wrap-break-word decoration-dashed underline-offset-4 focus-visible:no-underline;
-    }
+  .app-prose h2 {
+    @apply mt-[2.4em] mb-[0.9em] text-[1.3em] font-semibold tracking-tight;
+  }
 
-    ul {
-      @apply overflow-x-clip;
-    }
+  /* A small brick-red rule above each section heading. */
+  .app-prose h2::before {
+    content: "";
+    display: block;
+    width: 1.6rem;
+    height: 2px;
+    margin-bottom: 0.85rem;
+    background-color: var(--accent);
+  }
 
-    li {
-      @apply marker:text-accent;
-    }
+  .app-prose h3 {
+    @apply mt-[2em] mb-[0.7em] text-[1.12em] font-semibold;
+  }
 
-    hr {
-      @apply border-border;
-    }
+  .app-prose strong {
+    font-weight: 600;
+  }
 
-    img {
-      @apply border-border mx-auto border;
-    }
+  .app-prose a {
+    @apply text-foreground wrap-break-word;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklab, var(--accent) 55%, transparent);
+    text-underline-offset: 4px;
+    transition: color 150ms ease;
+  }
 
-    figcaption {
-      @apply opacity-75;
-    }
+  .app-prose a:hover {
+    @apply text-accent;
+    text-decoration-color: var(--accent);
+  }
 
-    table {
-      th,
-      td {
-        @apply border-border border p-2;
-      }
+  .app-prose ul {
+    @apply overflow-x-clip;
+  }
 
-      th {
-        @apply py-1.5;
-      }
-    }
+  .app-prose li {
+    @apply marker:text-accent;
+    margin-block: 0.5em;
+  }
 
-    code {
-      @apply bg-muted/75 text-foreground rounded p-1 wrap-break-word before:content-none after:content-none;
-    }
+  .app-prose li::marker {
+    font-size: 0.85em;
+  }
 
-    .astro-code code {
-      @apply flex-[1_0_100%] bg-inherit p-0;
-    }
+  /* `---` becomes a quiet typographic ornament, not a line. */
+  .app-prose hr {
+    border: 0;
+    margin-block: 3rem;
+    text-align: center;
+  }
 
-    blockquote {
-      @apply border-s-accent/80 wrap-break-word opacity-80;
-    }
+  .app-prose hr::after {
+    content: "· · ·";
+    letter-spacing: 0.7em;
+    font-size: 0.9em;
+    color: var(--muted-foreground);
+  }
 
-    details {
-      @apply text-foreground inline-block cursor-pointer select-none [&_p]:hidden [&_ul]:my-0!;
-    }
+  .app-prose img {
+    @apply mx-auto my-10 max-w-full;
+    border: 0;
+    box-shadow: 0 1px 2px rgb(35 33 29 / 0.08);
+  }
 
-    summary {
-      @apply focus-visible:outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-dashed;
-    }
+  [data-theme="dark"] .app-prose img {
+    box-shadow: none;
+  }
 
-    pre {
-      @apply focus-visible:outline-accent focus-visible:border-transparent focus-visible:outline-2 focus-visible:outline-dashed;
-    }
+  .app-prose figcaption {
+    @apply text-muted-foreground mt-3 text-center text-xs tracking-wide;
+    font-family: var(--font-sans);
+  }
+
+  .app-prose blockquote {
+    @apply text-foreground/90 border-s-accent wrap-break-word not-italic;
+    border-inline-start-width: 2px;
+    padding-inline-start: 1.25rem;
+    font-size: 1.02em;
+  }
+
+  .app-prose table {
+    font-size: 0.95em;
+  }
+
+  .app-prose table th,
+  .app-prose table td {
+    @apply border-border border-0 border-b p-2.5;
+  }
+
+  .app-prose table th {
+    @apply text-foreground border-b-[1.5px] font-semibold;
+  }
+
+  .app-prose code {
+    @apply text-foreground bg-muted/70 rounded-[3px] px-[0.35em] py-[0.12em] font-mono text-[0.85em] wrap-break-word before:content-none after:content-none;
+  }
+
+  .app-prose .astro-code code {
+    @apply flex-[1_0_100%] bg-inherit p-0 text-[0.86rem] leading-[1.75];
+  }
+
+  .app-prose pre {
+    @apply focus-visible:border-transparent focus-visible:outline-2 focus-visible:outline-solid;
+    border-radius: 0;
+    padding: 1.1rem 1.2rem;
+  }
+
+  .app-prose details {
+    @apply text-foreground inline-block cursor-pointer select-none [&_p]:hidden [&_ul]:my-0!;
+  }
+
+  .app-prose summary {
+    @apply focus-visible:outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-solid;
   }
 
   /* ===== Code Blocks & Syntax Highlighting ===== */

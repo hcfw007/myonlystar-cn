@@ -7,28 +7,41 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  --font-app: var(--font-google-sans-code);
+
+  /* Three type roles: reading, interface, code. */
+  --font-serif:
+    "Noto Serif SC Variable", "Noto Serif SC", "Songti SC",
+    "Source Han Serif SC", "Source Han Serif CN", serif;
+  --font-sans:
+    "Inter Variable", "Inter", -apple-system, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", sans-serif;
+  --font-mono:
+    var(--font-google-sans-code), ui-monospace, "SFMono-Regular", monospace;
 }
 
-/* Light theme values */
+/* Light theme values — warm paper, ink, one restrained brick red. */
 :root,
 [data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --accent-foreground: #ffffff;
-  --muted: #e6e6e6;
-  --muted-foreground: #6b7280;
-  --border: #ece9e9;
+  --background: #faf8f3;
+  --foreground: #23211d;
+  --accent: #8f3b2d;
+  --accent-foreground: #faf8f3;
+  --muted: #efeade;
+  --muted-foreground: #6d6659;
+  --border: #e4ddcd;
+  --paper-glow: rgb(143 59 45 / 0.05);
+  --paper-shade: rgb(90 76 55 / 0.035);
 }
 
-/* Dark theme values */
+/* Dark theme values — same colour family, lifted rather than swapped. */
 [data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --accent-foreground: #ffffff;
-  --muted: #343f60;
-  --muted-foreground: #afb9ca;
-  --border: #ab4b08;
+  --background: #171614;
+  --foreground: #e8e3d8;
+  --accent: #d98c73;
+  --accent-foreground: #171614;
+  --muted: #232119;
+  --muted-foreground: #a49c8c;
+  --border: #2c2a24;
+  --paper-glow: rgb(217 140 115 / 0.06);
+  --paper-shade: rgb(0 0 0 / 0.25);
 }

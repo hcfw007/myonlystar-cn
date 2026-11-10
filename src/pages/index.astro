@@ -1,19 +1,15 @@
 ---
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import IconRss from "@/assets/icons/IconRss.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
 import Card from "@/components/Card.astro";
-import LinkButton from "@/components/LinkButton.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
-const { socials, posts: postsConfig } = config;
+const { posts: postsConfig } = config;
 
 const locale = Astro.currentLocale ?? config.site.lang;
 const t = useTranslations(locale);
@@ -33,31 +29,29 @@ const homePath = getRelativeLocaleUrl(locale, "");
     data-home-path={homePath}
     class="app-layout"
   >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
+    <section id="hero" class="pt-16 pb-14 sm:pt-24 sm:pb-20">
+      <p class="eyebrow">私人笔记 · {new Date().getFullYear()}</p>
+      <h1
+        class="mt-5 font-serif text-5xl font-semibold tracking-tight sm:text-6xl"
+      >
         记事本
       </h1>
 
-      <p>
+      <p
+        class="text-muted-foreground mt-7 max-w-[32rem] font-serif text-[1.02rem] leading-loose"
+      >
         我是一个想法很多，但说不出来的人，希望能记录下来的一些。
         喜欢打游戏，看足球，看科普。
       </p>
-
     </section>
 
     {
       featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">
+        <section id="featured" class="border-border border-t pt-10">
+          <h2 class="font-serif text-xl font-semibold tracking-tight">
             {t.home.featured}
           </h2>
-          <ul>
+          <ul class="mt-4">
             {featuredPosts.map(data => (
               <Card variant="h3" {...data} />
             ))}
@@ -68,12 +62,20 @@ const homePath = getRelativeLocaleUrl(locale, "");
 
     {
       recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.recentPosts}
-          </h2>
-          <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
+        <section id="recent-posts" class="border-border border-t pt-10">
+          <div class="flex items-baseline justify-between gap-4">
+            <h2 class="font-serif text-xl font-semibold tracking-tight">
+              {t.home.recentPosts}
+            </h2>
+            <a
+              href={getRelativeLocaleUrl(locale, "posts")}
+              class="text-muted-foreground hover:text-accent text-xs tracking-[0.12em] whitespace-nowrap transition-colors"
+            >
+              {t.home.allPosts} →
+            </a>
+          </div>
+          <ul class="mt-4">
+            {recentPosts.slice(0, postsConfig.perIndex + 2).map(data => (
               <Card variant="h3" {...data} />
             ))}
           </ul>
@@ -81,12 +83,7 @@ const homePath = getRelativeLocaleUrl(locale, "");
       )
     }
 
-    <div class="my-8 text-center">
-      <LinkButton href={getRelativeLocaleUrl(locale, "posts")}>
-        {t.home.allPosts}
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
-    </div>
+    <div class="h-20"></div>
   </main>
   <Footer />
 </Layout>

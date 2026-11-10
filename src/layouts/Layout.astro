@@ -5,6 +5,8 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { resolveDefaultOgImagePath } from "@/utils/resolveDefaultOgImagePath";
 import { getAssetPath } from "@/utils/withBase";
 import config from "@/config";
+import "@fontsource-variable/noto-serif-sc";
+import "@fontsource-variable/inter";
 import "@/styles/global.css";
 
 type Props = {
@@ -128,9 +130,7 @@ const rssHref = getRelativeLocaleUrl(
 
     <ClientRouter />
   </head>
-  <body
-    class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col"
-  >
+  <body class="bg-background text-foreground flex min-h-svh flex-col font-sans">
     <slot />
     <script>
       import "@/scripts/theme";

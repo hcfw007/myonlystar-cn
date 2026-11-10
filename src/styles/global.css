@@ -6,30 +6,76 @@
 
 @layer base {
   * {
-    @apply border-border outline-accent/75;
+    @apply border-border outline-accent;
     scrollbar-width: auto;
     scrollbar-color: var(--color-muted) transparent;
   }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--background);
+    background-image:
+      radial-gradient(
+        60rem 32rem at 50% -12rem,
+        var(--paper-glow),
+        transparent 70%
+      ),
+      linear-gradient(to bottom, transparent, var(--paper-shade));
+    background-repeat: no-repeat;
+    font-feature-settings: "kern" 1;
+  }
+
+  /* Reading text is serif; everything else stays quiet and sans. */
+  p,
+  li,
+  dd,
+  dt,
+  blockquote,
+  figcaption,
+  time {
+    font-kerning: normal;
+  }
+
   a,
   button {
-    @apply outline-accent outline-offset-1 focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+    @apply outline-accent outline-offset-2 focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-solid;
   }
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--accent) 22%, transparent);
+    color: var(--foreground);
+  }
 }
 
+/* A narrower measure than the AstroPaper default: Chinese serif reads better here. */
 @utility max-w-app {
-  @apply max-w-3xl;
+  @apply max-w-[42rem];
 }
 
 @utility app-layout {
-  @apply max-w-app mx-auto w-full px-4;
+  @apply max-w-app mx-auto w-full px-5;
 }
 
 @utility active-nav {
-  @apply underline decoration-wavy decoration-2 underline-offset-8;
+  @apply text-accent decoration-accent underline decoration-1 underline-offset-[7px];
+}
+
+/* Centred typographic divider used between article sections. */
+@utility ornament {
+  @apply text-muted-foreground my-12 text-center text-[0.95rem] tracking-[0.6em] select-none;
+}
+
+@utility eyebrow {
+  @apply text-muted-foreground text-[0.68rem] tracking-[0.28em] uppercase;
 }
 
 :target {

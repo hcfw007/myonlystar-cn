@@ -33,56 +33,61 @@ const monthFormatter = new Intl.DateTimeFormat(locale, { month: "long" });
   <Breadcrumb />
 
   <Main pageTitle={t.pages.archivesTitle} pageDesc={t.pages.archivesDesc}>
-    {
-      Object.entries(
-        getPostsByGroupCondition(filteredPosts, post =>
-          post.data.pubDatetime.getFullYear()
+    <div class="mt-4">
+      {
+        Object.entries(
+          getPostsByGroupCondition(filteredPosts, post =>
+            post.data.pubDatetime.getFullYear()
+          )
         )
-      )
-        .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
-        .map(([year, yearGroup]) => (
-          <div>
-            <span class="text-2xl font-bold">{year}</span>
-            <sup class="text-muted-foreground text-sm">{yearGroup.length}</sup>
-            {Object.entries(
-              getPostsByGroupCondition(
-                yearGroup,
-                post => post.data.pubDatetime.getMonth() + 1
+          .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
+          .map(([year, yearGroup]) => (
+            <section class="border-border relative border-s ps-7 pb-12 last:pb-4 sm:ps-10">
+              <span
+                aria-hidden="true"
+                class="bg-accent absolute -start-[4.5px] top-3 size-2 rounded-full"
+              />
+              <h2 class="font-serif text-2xl font-semibold tracking-tight">
+                {year}
+                <sup class="text-muted-foreground ms-1 text-xs font-normal tracking-wider">
+                  {yearGroup.length}
+                </sup>
+              </h2>
+              {Object.entries(
+                getPostsByGroupCondition(
+                  yearGroup,
+                  post => post.data.pubDatetime.getMonth() + 1
+                )
               )
-            )
-              .sort(([monthA], [monthB]) => Number(monthB) - Number(monthA))
-              .map(([month, monthGroup]) => (
-                <div class="flex flex-col sm:flex-row">
-                  <div class="mt-6 min-w-36 text-lg sm:my-6">
-                    <span class="font-bold">
+                .sort(([monthA], [monthB]) => Number(monthB) - Number(monthA))
+                .map(([month, monthGroup]) => (
+                  <div class="mt-7">
+                    <h3 class="text-muted-foreground text-xs tracking-[0.2em]">
                       {monthFormatter.format(
                         new Date(2000, Number(month) - 1, 1)
                       )}
-                    </span>
-                    <sup class="text-muted-foreground text-xs">
-                      {monthGroup.length}
-                    </sup>
+                    </h3>
+                    <ul class="mt-2">
+                      {monthGroup
+                        .sort(
+                          (a, b) =>
+                            Math.floor(
+                              new Date(b.data.pubDatetime).getTime() / 1000
+                            ) -
+                            Math.floor(
+                              new Date(a.data.pubDatetime).getTime() / 1000
+                            )
+                        )
+                        .map(data => (
+                          <Card showDate={false} {...data} />
+                        ))}
+                    </ul>
                   </div>
-                  <ul>
-                    {monthGroup
-                      .sort(
-                        (a, b) =>
-                          Math.floor(
-                            new Date(b.data.pubDatetime).getTime() / 1000
-                          ) -
-                          Math.floor(
-                            new Date(a.data.pubDatetime).getTime() / 1000
-                          )
-                      )
-                      .map(data => (
-                        <Card {...data} />
-                      ))}
-                  </ul>
-                </div>
-              ))}
-          </div>
-        ))
-    }
+                ))}
+            </section>
+          ))
+      }
+    </div>
   </Main>
 
   <Footer />

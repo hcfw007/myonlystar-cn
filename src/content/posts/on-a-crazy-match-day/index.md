@@ -4,10 +4,11 @@ description: On a crazy match day
 pubDatetime: 2026-11-09T11:00:00+08:00
 author: Nan
 featured: false
-draft: true
+draft: false
 tags:
   - football
   - esports
+ogImage: "./dalian-champions.jpg"
 ---
 
 真是疯狂的一天。
@@ -29,3 +30,7 @@ tags:
 晚上的小众变态比赛更是不提了。可怜我曼联怎么说也是大英头牌之一，居然沦落至此。按照目前的平均得分，到赛季结束总分将不到 31 分，而英超成功保级的最低积分纪录是 32 分。弗格森退休时，我曾希望曼联能在弗格森有生之年为他再献上一座英超冠军奖杯。现在，我只希望我能活着见证曼联下一次英超夺冠。
 
 这三场给我的感觉完全不一样。IG 输给 Gen.G，不甘心归不甘心，但也知道实力差距摆在那里。大连这个冠军，是看完了结果还得再去确认一下积分榜，生怕自己看错。曼联倒好，过程够疯狂，结果却一点不意外。凌晨看完，还是熟悉的配方。
+
+![大连英博队在颁奖仪式上庆祝夺冠，2026 年 11 月 8 日](./dalian-champions.jpg)
+
+<small>图源：[新华网](https://www.xinhuanet.com/20261109/92db7a10ada54656b4f374ea9270a44f/c.html)，摄影：新华社记者潘昱龙</small>
